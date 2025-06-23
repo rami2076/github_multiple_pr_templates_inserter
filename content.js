@@ -11,13 +11,11 @@ function insertTemplate() {
 }
 
 function addTemplateButton() {
-  // PR説明の編集フォームを持つエリアを取得
-  const form = document.querySelector('form.js-comment-form[action*="/pull/"][action*="update"]');
-  if (!form) return;
+  const form = document.querySelector('form#issue_body_edit_form');
+  if (!form || form.querySelector('#gh-template-insert-btn')) return;
 
-  // タブナビゲーション（Write/Preview）を取得
-  const tabNav = form.querySelector('.tabnav, .js-comment-field .tabnav-tabs');
-  if (!tabNav || form.querySelector('#gh-template-insert-btn')) return;
+  const tabNavContainer = form.querySelector('.tabnav');
+  if (!tabNavContainer) return;
 
   const button = document.createElement('button');
   button.id = 'gh-template-insert-btn';
@@ -27,7 +25,7 @@ function addTemplateButton() {
   button.style.marginLeft = '8px';
   button.onclick = insertTemplate;
 
-  tabNav.appendChild(button);
+  tabNavContainer.appendChild(button);
 }
 
 const observer = new MutationObserver(() => {
