@@ -7,33 +7,31 @@ function insertTemplate() {
     if (!current.includes('# 概要')) {
       textarea.value = TEMPLATE_TEXT + '\n\n' + current;
     }
-  } else {
-    console.warn('テンプレート挿入失敗：textarea[name="pull_request[body]"] が見つかりません');
   }
 }
 
 function addTemplateButton() {
-  const container = document.querySelector(
-    '#issue-3165949030-edit-form > div > div.Box.CommentBox.m-2 > div.tabnav.CommentBox-header.p-0.position-static'
-  );
+  // PR説明の編集フォームを持つエリアを取得
+  const form = document.querySelector('form.js-comment-form[action*="/pull/"][action*="update"]');
+  if (!form) return;
 
-  if (!container || document.getElementById('gh-template-insert-btn')) return;
+  // タブナビゲーション（Write/Preview）を取得
+  const tabNav = form.querySelector('.tabnav, .js-comment-field .tabnav-tabs');
+  if (!tabNav || form.querySelector('#gh-template-insert-btn')) return;
 
   const button = document.createElement('button');
   button.id = 'gh-template-insert-btn';
   button.textContent = 'テンプレート挿入';
-  button.className = 'btn btn-sm ml-2';
-  button.type = 'button'; // prevent form submission
+  button.className = 'btn btn-sm';
+  button.type = 'button';
+  button.style.marginLeft = '8px';
   button.onclick = insertTemplate;
 
-  container.appendChild(button);
+  tabNav.appendChild(button);
 }
 
 const observer = new MutationObserver(() => {
-  const editForm = document.querySelector('#issue-3165949030-edit-form');
-  if (editForm) {
-    addTemplateButton();
-  }
+  addTemplateButton();
 });
 
 observer.observe(document.body, {
