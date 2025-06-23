@@ -1,18 +1,43 @@
-const STORAGE_KEY = 'github_pr_template_from_options';
+const TEMPLATE_PREFIX = "github_pr_template_";
+const SELECTED_KEY = "github_pr_selected_template";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const textarea = document.getElementById('templateArea');
-  const status = document.getElementById('status');
+const templateSelector = document.getElementById("templateSelector");
+const templateArea = document.getElementById("templateArea");
+const selectedTemplate = document.getElementById("selectedTemplate");
+const status = document.getElementById("status");
 
-  chrome.storage.local.get([STORAGE_KEY], (result) => {
-    textarea.value = result[STORAGE_KEY] || "# 概要\n# 動作確認";
+function loadTemplate() {
+  const key = TEMPLATE_PREFIX + templateSelector.value;
+  chrome.storage.local.get([key], (result) => {
+    templateArea.value = result[key] || "";
   });
+}
 
-  document.getElementById('saveBtn').addEventListener('click', () => {
-    const value = textarea.value;
-    chrome.storage.local.set({ [STORAGE_KEY]: value }, () => {
-      status.textContent = '保存しました。';
-      setTimeout(() => status.textContent = '', 2000);
-    });
+function saveTemplate() {
+  const key = TEMPLATE_PREFIX + templateSelector.value;
+  const value = templateArea.value;
+  chrome.storage.local.set({[key]: value}, () => {
+    status.textContent = "保存しました";
+    setTimeout(() => (status.textContent = ""), 1500);
   });
-});
+}
+
+function loadSelectedTemplate() {
+  chrome.storage.local.get([SELECTED_KEY], (result) => {
+    selectedTemplate.value = result[SELECTED_KEY] || "1";
+  });
+}
+
+function saveSelectedTemplate() {
+  chrome.storage.local.set({[SELECTED_KEY]: selectedTemplate.value}, () => {
+    status.textContent = "挿入テンプレート設定済";
+    setTimeout(() => (status.textContent = ""), 1500);
+  });
+}
+
+templateSelector.addEventListener("change", loadTemplate);
+document.getElementById("saveBtn").addEventListener("click", saveTemplate);
+selectedTemplate.addEventListener("change", saveSelectedTemplate);
+
+loadTemplate();
+loadSelectedTemplate();

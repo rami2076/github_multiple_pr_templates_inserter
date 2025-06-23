@@ -6,8 +6,14 @@
   <style>
       textarea {
           width: 100%;
-          height: 200px;
+          height: 150px;
           font-family: monospace;
+          display: block;
+          margin-bottom: 10px;
+      }
+
+      select, button {
+          margin-top: 10px;
       }
 
       body {
@@ -18,12 +24,23 @@
   </style>
 </head>
 <body>
-<h2>テンプレート設定</h2>
-<p>以下の内容がGitHubのPull Requestディスクリプションに挿入されます。</p>
+<h2>テンプレート編集（2種）</h2>
+<label for="templateSelector">編集するテンプレートを選択:</label>
+<select id="templateSelector">
+  <option value="1">テンプレート 1</option>
+  <option value="2">テンプレート 2</option>
+</select>
 <textarea id="templateArea"></textarea>
-<br/>
 <button id="saveBtn">保存</button>
+
+<h3>挿入に使うテンプレート</h3>
+<label for="selectedTemplate">PRで使うテンプレートを選択:</label>
+<select id="selectedTemplate">
+  <option value="1">テンプレート 1</option>
+  <option value="2">テンプレート 2</option>
+</select>
 <span id="status" style="margin-left: 10px;"></span>
+
 <script src="options.js"></script>
 </body>
 </html>

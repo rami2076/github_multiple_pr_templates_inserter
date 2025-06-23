@@ -1,9 +1,14 @@
-const STORAGE_KEY = 'github_pr_template_from_options';
+const TEMPLATE_KEY_PREFIX = "github_pr_template_";
+const SELECTED_KEY = "github_pr_selected_template";
 
 async function getTemplate() {
   return new Promise((resolve) => {
-    chrome.storage.local.get([STORAGE_KEY], (result) => {
-      resolve(result[STORAGE_KEY] || "# 概要\n# 動作確認");
+    chrome.storage.local.get([SELECTED_KEY], (selected) => {
+      const templateIndex = selected[SELECTED_KEY] || "1";
+      const templateKey = TEMPLATE_KEY_PREFIX + templateIndex;
+      chrome.storage.local.get([templateKey], (result) => {
+        resolve(result[templateKey] || "# 概要\n# 動作確認");
+      });
     });
   });
 }
@@ -48,5 +53,5 @@ function addTemplateButton() {
 }
 
 const observer = new MutationObserver(addTemplateButton);
-observer.observe(document.body, { childList: true, subtree: true });
+observer.observe(document.body, {childList: true, subtree: true});
 addTemplateButton();
