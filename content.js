@@ -2,8 +2,13 @@ const TEMPLATE_TEXT = `# 概要\n# 動作確認`;
 
 function insertTemplate() {
   const textarea = document.querySelector('textarea#pull_request_body');
-  if (textarea && !textarea.value.includes('# 概要')) {
-    textarea.value = TEMPLATE_TEXT + '\n\n' + textarea.value;
+  if (textarea) {
+    const current = textarea.value.trim();
+    if (!current.includes('# 概要')) {
+      textarea.value = TEMPLATE_TEXT + '\n\n' + current;
+    }
+  } else {
+    console.warn('テンプレート挿入失敗：textareaが見つかりません');
   }
 }
 
@@ -18,13 +23,12 @@ function addTemplateButton() {
   button.id = 'gh-template-insert-btn';
   button.textContent = 'テンプレート挿入';
   button.className = 'btn btn-sm ml-2';
-  button.style.marginLeft = '8px';
+  button.type = 'button'; // ← これが重要！！
   button.onclick = insertTemplate;
 
   container.appendChild(button);
 }
 
-// MutationObserverで対象の要素が現れたらボタン挿入
 const observer = new MutationObserver(() => {
   const editForm = document.querySelector('#issue-3165949030-edit-form');
   if (editForm) {
