@@ -4,7 +4,7 @@
   "version": "1.4",
   "description": "Edit and insert PR templates from options page",
   "permissions": ["storage", "scripting"],
-  "host_permissions": ["https://github.com/*"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_title": "GitHub PR テンプレート拡張",
     "default_icon": {
@@ -16,7 +16,7 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["https://github.com/*/*/pull/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
