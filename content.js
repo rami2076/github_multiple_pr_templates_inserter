@@ -4,7 +4,14 @@ const DOMAINS_KEY = "github_pr_allowed_domains";
 
 // プレースホルダー置換用モーダル処理
 function fillPlaceholdersWithModal(template) {
-  const matches = [...template.matchAll(/{{\s*([\w-]+)\s*}}/g)];
+
+// | プレースホルダー        | マッチ？ | 抽出されるキー      |
+//   | --------------- | ---- | ------------ |
+//   | `{{タイトル}}`      | ✔️   | タイトル         |
+//   | `{{title-123}}` | ✔️   | title-123    |
+//   | `{{déjà}}`      | ✔️   | déjà         |
+//   | `{{a\u0301b}}`  | ❌    | （結合文字含むため無視） |
+  const matches = [...template.matchAll(/\{\{\s*([\p{L}\p{N}\p{Pc}\p{Pd}]+)\s*\}\}/gu)];
   const uniqueKeys = [...new Set(matches.map((m) => m[1]))];
 
   if (uniqueKeys.length === 0) return Promise.resolve(template);
