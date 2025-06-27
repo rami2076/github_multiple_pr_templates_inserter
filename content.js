@@ -12,10 +12,28 @@ function fillPlaceholdersWithModal(template) {
   return new Promise((resolve) => {
     const modal = document.createElement("div");
     modal.id = "placeholder-modal";
-    modal.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:10000;display:flex;justify-content:center;align-items:center;";
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.background = "rgba(0,0,0,0.5)";
+    modal.style.zIndex = "10000";
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"`;
+
 
     const form = document.createElement("form");
-    form.style = "background:#fff;padding:20px;border-radius:8px;min-width:300px;max-width:90%;";
+    form.style.background = "#f6f8fa";
+    form.style.padding = "20px";
+    form.style.borderRadius = "6px";
+    form.style.border = "1px solid #d0d7de";
+    form.style.boxShadow = "0 8px 24px rgba(140,149,159,0.2)";
+    form.style.minWidth = "320px";
+    form.style.maxWidth = "90%";
+
     form.innerHTML = "<h3 style='margin-top:0;'>プレースホルダーを入力してください</h3>";
 
     const inputs = {};
@@ -30,6 +48,9 @@ function fillPlaceholdersWithModal(template) {
       input.name = key;
       input.style.width = "100%";
       input.style.padding = "6px";
+      input.style.borderRadius = "6px";
+      input.style.border = "1px solid #d1d9e0";
+      input.style.boxShadow = "0 8px 24px rgba(140,149,159,0.2)";
       inputs[key] = input;
 
       form.appendChild(label);
@@ -41,12 +62,14 @@ function fillPlaceholdersWithModal(template) {
 
     const cancel = document.createElement("button");
     cancel.type = "button";
+    // cancel.style.marginRight = "8px";
     cancel.textContent = "キャンセル";
-    cancel.style.marginRight = "8px";
+    cancel.className = "btn";
 
     const ok = document.createElement("button");
     ok.type = "submit";
     ok.textContent = "OK";
+    ok.className = "btn btn-primary";
 
     btnRow.appendChild(cancel);
     btnRow.appendChild(ok);
