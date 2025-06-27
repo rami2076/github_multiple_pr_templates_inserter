@@ -51,7 +51,13 @@ function findTabNav(textarea) {
 
 function addTemplateButton() {
   const textarea = document.querySelector('textarea[name="pull_request[body]"]');
-  if (!textarea) return;
+
+  if (!textarea) {
+    console.log("無効")
+    return;
+  } else {
+    console.log("有効")
+  }
 
   const tabNav = findTabNav(textarea);
   if (!tabNav || document.getElementById('gh-template-insert-btn')) return;
@@ -101,10 +107,11 @@ async function initContentScript() {
     const observer = new MutationObserver(addTemplateButton);
     observer.observe(document.body, {childList: true, subtree: true});
     addTemplateButton();
+    console.log("有効化")
   } else {
     console.log(`GitHub PR Template Inserter: Current domain "${currentHostname}" is not in the allowed list.`);
   }
 }
 
 // スクリプトが読み込まれたら初期化処理を実行
-initContentScript();
+await initContentScript();
