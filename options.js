@@ -47,8 +47,8 @@ function saveDomains() {
   const domainsText = domainsArea.value;
   // 各行をトリムし、空行を削除して配列に変換
   const domainsArray = domainsText.split('\n')
-  .map(d => d.trim())
-  .filter(d => d.length > 0);
+    .map(d => d.trim())
+    .filter(d => d.length > 0);
 
   chrome.storage.local.set({[DOMAINS_KEY]: domainsArray}, () => {
     domainsStatus.textContent = 'ドメインを保存しました！';

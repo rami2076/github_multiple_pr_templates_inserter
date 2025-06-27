@@ -1,10 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "GitHub PR Template Inserter with Options",
-  "version": "1.4",
-  "description": "Edit and insert PR templates from options page",
-  "permissions": ["storage", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "name": "GitHub PR multiple Template Inserter",
+  "version": "0.0.1",
+  "description": "Edit and insert PR multiple templates",
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_title": "GitHub PR テンプレート拡張",
     "default_icon": {
@@ -16,8 +21,12 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ]
