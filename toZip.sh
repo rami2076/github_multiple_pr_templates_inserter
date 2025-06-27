@@ -1,32 +1,26 @@
 #!/bin/bash
 
-# 使用方法チェック
-content.js
-icon.png
-LICENCE
-manifest.json
-options.css
-options.html
-options.js
+# 出力ZIPファイル名
+ZIPFILE="output.zip"
 
-# 出力ファイル名（.zip拡張子自動追加）
-ZIPFILE="github-pr-multiple-template-inserter"
-shift
-
-# もし .zip が末尾についてなければ付ける
-if [[ "$ZIPFILE" != *.zip ]]; then
-  ZIPFILE="${ZIPFILE}.zip"
-fi
+# ZIP化する対象ファイル・ディレクトリの配列
+TARGETS=(
+  "content.js"
+  "icon.png"
+  "manifest.json"
+  "options.css"
+  "options.html"
+  "options.js"
+)
 
 # 対象ファイルの存在チェック
-for f in "$@"; do
+for f in "${TARGETS[@]}"; do
   if [ ! -e "$f" ]; then
-    echo "エラー: ファイル '$f' が存在しません"
-    exit 1
+    echo "警告: '$f' は存在しません"
   fi
 done
 
 # zipファイル作成
-zip -r "$ZIPFILE" "$@"
+zip -r "$ZIPFILE" "${TARGETS[@]}"
 
 echo "作成完了: $ZIPFILE"
