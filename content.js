@@ -69,14 +69,14 @@ function addTemplateButton() {
 
 // === ドメインチェックとPRページ判定のロジックをここに追加 ===
 async function initContentScript() {
-  const currentUrl = window.location.href;
+  const currentPathName = window.location.pathname
   const currentHostname = window.location.hostname;
 
   // GitHubのPRページであるかの基本的なチェック
   // 例: https://github.com/user/repo/pull/123 のような形式を想定
-  const isPullRequestPage = /https:\/\/[\w.-]+\/[\w.-]+\/[\w.-]+\/pull\/\d+(\/files|\/commits|\/checks|\/conversations)?\/?$/.test(currentUrl);
+  const isPullRequestPath = /^\/[^/]+\/[^/]+\/pull\/\d+\/?$/.test(currentPathName);
 
-  if (!isPullRequestPage) {
+  if (!isPullRequestPath) {
     // PRページでなければ何もしない
     return;
   }
