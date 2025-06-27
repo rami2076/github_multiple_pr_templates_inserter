@@ -114,4 +114,6 @@ async function initContentScript() {
 }
 
 // スクリプトが読み込まれたら初期化処理を実行
-await initContentScript();
+initContentScript()
+  .then(() => console.log("OK"))
+  .catch(() => console.log("NG"))
