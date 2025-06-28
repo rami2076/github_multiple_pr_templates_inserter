@@ -1,0 +1,127 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /* GitHubのフォントスタックを参考に */
+    padding: 20px;
+    max-width: 700px; /* 少し広げてGitHubのコンテンツ幅に近づける */
+    margin: 0 auto; /* 中央寄せ */
+    background-color: #f6f8fa; /* GitHubのライトモード背景色 */
+    color: #24292e; /* 基本テキスト色 */
+    line-height: 1.5;
+}
+
+/* ダークモード対応のための基本的な設定 (bodyにdark-modeクラスを追加することを想定) */
+body.dark-mode {
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
+h2, h3 {
+    color: #24292e; /* 見出し色 */
+    border-bottom: 1px solid #eaecef; /* GitHub風のセクション区切り線 */
+    padding-bottom: 8px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #c9d1d9;
+    border-bottom-color: #30363d;
+}
+
+label {
+    display: block; /* ラベルを独立した行に表示 */
+    margin-bottom: 8px;
+    font-weight: 600; /* 太字 */
+    color: #24292e;
+}
+
+body.dark-mode label {
+    color: #c9d1d9;
+}
+
+textarea,
+select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5da; /* GitHubの入力フィールドのボーダー */
+    border-radius: 6px; /* 角丸 */
+    box-shadow: inset 0 1px 2px rgba(27, 31, 35, .075); /* 軽い影 */
+    background-color: #ffffff; /* 背景色 */
+    color: #24292e; /* テキスト色 */
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 15px; /* 下に余白 */
+    box-sizing: border-box; /* paddingとborderをwidthに含める */
+}
+
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: #161b22;
+    border-color: #30363d;
+    color: #c9d1d9;
+}
+
+textarea:focus,
+select:focus {
+    border-color: #0366d6; /* フォーカス時のボーダー色 */
+    outline: none; /* デフォルトのアウトラインを削除 */
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3); /* GitHubのフォーカス時の光 */
+}
+
+button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #ffffff; /* ボタンテキスト色 */
+    background-color: #2ea44f; /* GitHubのプライマリボタン色 */
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-top: 10px; /* 元の余白を維持 */
+}
+
+body.dark-mode button {
+    background-color: #238636;
+    border-color: #30363d;
+}
+
+button:hover {
+    background-color: #2c974b; /* ホバー時の色 */
+    border-color: rgba(27, 31, 35, .2);
+}
+
+body.dark-mode button:hover {
+    background-color: #28a745;
+}
+
+button:active {
+    background-color: #268b44; /* アクティブ時の色 */
+    box-shadow: rgba(209, 213, 217, 0.2) 0 1px 0 inset;
+}
+
+body.dark-mode button:active {
+    background-color: #219d3b;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 164, 79, 0.4); /* フォーカス時の光 */
+}
+
+span#status {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #586069; /* GitHubの補助テキスト色 */
+}
+
+body.dark-mode span#status {
+    color: #8b949e;
+}

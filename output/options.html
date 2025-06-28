@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <title>テンプレート設定</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+<h2>テンプレート編集（2種）</h2>
+<label for="templateSelector">編集するテンプレートを選択:</label>
+<select id="templateSelector">
+  <option value="1">テンプレート 1</option>
+  <option value="2">テンプレート 2</option>
+</select>
+<textarea id="templateArea"></textarea>
+<button id="saveBtn">保存</button>
+
+<h3>挿入に使うテンプレート</h3>
+<label for="selectedTemplate">PRで使うテンプレートを選択:</label>
+<select id="selectedTemplate">
+  <option value="1">テンプレート 1</option>
+  <option value="2">テンプレート 2</option>
+</select>
+<span id="status" style="margin-left: 10px;"></span>
+
+---
+
+<h3>適用ドメイン設定</h3>
+<p>テンプレートを挿入するGitHubのドメインを1行に1つずつ入力してください。<br>例: `github.com`<br>`enterprise.github.com`
+</p>
+<textarea id="domainsArea" placeholder="例:&#10;github.com&#10;enterprise.github.com"></textarea>
+<button id="saveDomainsBtn">ドメインを保存</button>
+<span id="domainsStatus" style="margin-left: 10px;"></span>
+
+<script src="options.js"></script>
+</body>
+</html>
