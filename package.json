@@ -1,0 +1,35 @@
+{
+  "name": "github-pr-template-inserter",
+  "version": "0.0.1",
+  "description": "Chrome extension for inserting PR templates with placeholder support",
+  "private": true,
+  "scripts": {
+    "build": "npm run clean && npm run copy-files && npm run create-zip",
+    "clean": "rm -rf output/*",
+    "copy-files": "mkdir -p output/icons && cp content.js manifest.json options.css options.html options.js output/ && cp icons/icon-white-*.png output/icons/",
+    "create-zip": "cd output && zip -r output.zip ./*",
+    "dev": "npm run copy-files",
+    "watch": "nodemon --watch . --ext js,html,css,json --ignore output --ignore node_modules --exec 'npm run dev'",
+    "lint": "eslint *.js",
+    "format": "prettier --write *.js *.html *.css *.json"
+  },
+  "keywords": [
+    "chrome-extension",
+    "github",
+    "pull-request",
+    "template"
+  ],
+  "author": {
+    "name": "rami2076",
+    "email": "sakusennx@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
