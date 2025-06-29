@@ -134,3 +134,12 @@ fabric.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS
+.DS_Store

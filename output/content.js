@@ -29,7 +29,6 @@ function fillPlaceholdersWithModal(template) {
     modal.style.display = "flex";
     modal.style.justifyContent = "center";
     modal.style.alignItems = "center";
-    modal.style.fontFamily = `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"`;
 
 
     const form = document.createElement("form");
